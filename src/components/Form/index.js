@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
-import styles from "./style";
 
-import { Result } from "./result";
+// erros
+import styles from "./style";
+import Result from "./Result";
+
 import { getCotacao } from "./../../services/api";
 
 export default function Form() {
@@ -58,8 +60,6 @@ export default function Form() {
             }}
             <Text style={styles.TextButton}>Converter para USS</Text>
           </TouchableOpacity>
-
-          
 
           <Result msg={msg} valor={resultado} />
 
