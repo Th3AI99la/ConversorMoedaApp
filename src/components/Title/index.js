@@ -1,16 +1,30 @@
 import React from "react";
 import { Text, View } from "react-native";
-import styles from "./style";
-
+import { StyleSheet } from "react-native";
 
 export default function Title() {
   return (
-    <View style={styles.boxTitle}>
-      <Text style={styles.titleTitle}>
+    <View >
+      <Text>
         Tela do Title - Conversor de Moeda v1.0
       </Text>
     </View>
   );
 }
+
+
+const styles = StyleSheet.create({
+
+    textTitle:{
+        color: "#1967d2",
+        fontSize: 24,
+        fontWeight: "bold"
+    },
+    boxTitle: {
+        alignItems: "center",
+        justifyContent: "center"
+    }
+
+});
 
 

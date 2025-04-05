@@ -2,8 +2,8 @@ import React, {useState} from "react";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import styles from "./style";
 
-import {Result} from "./result";
-import getCotacao from "../../../services/Api";
+import {Result} from "../result";
+import getCotacao from "../../../services/api";
 
 
 export default function Form(){
