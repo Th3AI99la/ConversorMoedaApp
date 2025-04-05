@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
 
-// erros
 import styles from "./style";
-import Result from "./Result";
+import { Result } from "./Result";
+import services from "../../../services/Api";
+import getCotacao from "../../../services/Api";
 
-import { getCotacao } from "./../../services/api";
 
 export default function Form() {
   // Declaracao de variaveis
@@ -29,10 +29,15 @@ export default function Form() {
     //funcao de conversao
 
     async function converter() {
-      const aux = await getCotacao();
+      const data = await getCotacao()
 
-      setCotacao(aux[0]);
-      setMsg(aux[1]);
+        setCotacao(data[0])
+        setMsg(data[1])
+
+        console.log("Conversao")
+        console.log(cotacao)
+        console.log(msg)
+        console.log(real)
 
       setResultado((real / cotacao).toFixed(2));
     }

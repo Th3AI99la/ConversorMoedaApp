@@ -16,10 +16,10 @@ export default async function getCotacao() {
       const ask = data.USDBRL.ask; // valor de venda
       const name = data.USDBRL.name; // nome da moeda
 
-      resuts = {
-        ask: ask,
-        name: name,
-      };
+      resuts = [
+        ask,
+        name
+      ];
 
       // teste
       console.log("cotacao do dia:");
@@ -31,4 +31,7 @@ export default async function getCotacao() {
     .catch(function (error) {
       console.log(error);
     });
+
+  // Retorna os resultados
+  return resuts;
 }

@@ -12,7 +12,6 @@ export default function App() {
     <View style={styles.container}>
       <Title />
       <Form />
-      <Text>Teste do App.JS</Text>
       <StatusBar style="auto" />
     </View>
   );
