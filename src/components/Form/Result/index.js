@@ -1,14 +1,38 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
-import { styles } from './style';
+import {View, Text} from "react-native";
+import { StyleSheet } from 'react-native';
 
+export function Result(props){
 
-export default function Result({ msg, result }) {
-  //Dev
-  return (
-    <View style={styles.container}>
-        <Text style={styles.formLabel}>{props.msg}</Text>
-        <Text style={styles.formValor}>{props.valor}</Text>
-    </View>
-  );
+    //Dev
+    return(
+        <View  >
+            <Text style={styles.formValor}>
+                Cotação: {props.cotacao}
+            </Text>
+            <Text style={styles.formLabel} >
+                Moeda: {props.msg}
+            </Text>
+            <Text style={styles.formValor}>
+               Resultado: {props.valor}
+            </Text>
+        </View>
+    );
 }
+
+
+
+export const styles = StyleSheet.create({
+    container: {},
+    formLabel: {
+        color: "#000000",
+        fontSize: 18,
+        paddingLeft: 20
+    },
+    formValor:{
+        color:"#000000",
+        fontSize:18,
+        fontWeight:'bold',
+        paddingLeft: 20
+    }
+});

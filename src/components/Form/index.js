@@ -1,74 +1,84 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
-
 import styles from "./style";
-import { Result } from "./Result";
-import services from "../../../services/Api";
+
+import {Result} from "./result";
 import getCotacao from "../../../services/Api";
 
 
-export default function Form() {
-  // Declaracao de variaveis
+export default function Form(){
+    //Seção da logica
+    const [real, setReal] = useState(null);
+    const [msg, setMsg] = useState(null);
+    const [resultado, setResultado] = useState(null);
+    const [cotacao, setCotacao] = useState(null);
 
-  const [real, setReal] = useState(null);
-  const [msg, setMsg] = useState(null);
-  const [resultado, setResultado] = useState(null);
-  const [cotacao, setCotacao] = useState(null);
+    //Funcao que é chamada pelo botão da tela
+    function validar(){
 
-  // funcao chamada ao clicar no botao
 
-  function validar() {
-    if (real != null) {
-      converter();
-      setReal(null);
-    } else {
-      setMsg("Informe um valor válido");
-      setResultado(null);
+        if(real != null ){
+
+            console.log("Converter")
+
+            converter()
+            setReal(null)
+
+        }else{
+            setMsg("Informe um valor a ser convertido")
+            setResultado(null)
+        }
+
     }
-
-    //funcao de conversao
 
     async function converter() {
-      const data = await getCotacao()
+        console.log("antes da cotação")
+        const aux = await getCotacao()
+        console.log("depois da cotação")
 
-        setCotacao(data[0])
-        setMsg(data[1])
+        setCotacao(aux[0])
+        setMsg(aux[1])
 
-        console.log("Conversao")
+
+        console.log("Formulario")
         console.log(cotacao)
         console.log(msg)
-        console.log(real)
+        
+        
+        return setResultado((real/cotacao).toFixed(2))
+        
 
-      setResultado((real / cotacao).toFixed(2));
+
+
     }
 
-    //Dev
-    return (
 
-      <View styles={styles.formContext}>
+    //Seção da montagem da tela
+    return(
 
-          <Text style={styles.formLabel}>Real: </Text>
+        <View style={styles.formContext}>
+            <View style={styles.form}>
 
-          <TextInput />
-          style={styles.TextInput}
-          keyboardType="numeric" value={real}
-          onChangeText={setReal}
-          placeholder="R$: 10,00"
-          <TextInput />
+                <Text style={styles.formLabel}>Real</Text>
+                <TextInput 
+                    style={styles.TextInput}
+                    keyboardType="numeric"
+                    value={real}
+                    onChangeText={setReal}
+                    placeholder="Ex: 6.00"
+                />
 
-          <TouchableOpacity>
+                <TouchableOpacity
+                    style={styles.button}
+                    onPress={() => { validar() }}
+                >
+                    <Text style={styles.textButton}>Converter para U$</Text>
+                </TouchableOpacity>
 
-            style={styles.button}
-            onPress=
-            {() => {
-              validar();
-            }}
-            <Text style={styles.TextButton}>Converter para USS</Text>
-          </TouchableOpacity>
+            </View>
+            
+            <Result cotacao={cotacao} msg={msg} valor={resultado}/>
 
-          <Result msg={msg} valor={resultado} />
-
-      </View>
+        </View>
     );
-  }
 }
